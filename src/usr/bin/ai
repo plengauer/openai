@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+prompt="$*"
+system_prompt="$OPENAI_SYSTEM_PROMPT"
+openai_token="$(cat /opt/openai/OPENAI_API_TOKEN)"
+request="$(jq -n --arg system_prompt "$system_prompt" --arg prompt "$prompt" '{ model: "gpt-4", messages: [ { role: "system", content: $system_prompt }, { role: "user", content: $prompt } ] }')"
+# echo "$request" > ./.openai.request
+curl --silent --no-progress-meter https://api.openai.com/v1/chat/completions -H "Authorization: Bearer $openai_token" -H "Content-Type: application/json" -X POST -d "$request" \
+  # | tee ./.openai.response \
+  | jq -r '.choices[0].message.content'

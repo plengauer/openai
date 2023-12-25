@@ -1,0 +1,9 @@
+Package: openai
+Provides: ai
+Version: 0.1.0
+Architecture: all
+Depends: debconf, bash, curl, jq
+Priority: optional
+Maintainer: Philipp Lengauer <p.lengauer@gmail.com>
+Homepage: https://github.com/plengauer/openai
+Description: A commandline interface to the OpenAI API for text-based input and output

@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+. /usr/share/debconf/confmodule
+
+db_beginblock
+db_input critical openai/OPENAI_API_TOKEN || true
+db_endblock
+db_go
