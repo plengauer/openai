@@ -2,4 +2,5 @@
 set -e
 prompt="$*"
 system_prompt="$AI_SYSTEM_PROMPT"
-jq -n --arg system_prompt "$system_prompt" --arg prompt "$prompt" '{ model: "gpt-4", messages: [ { role: "system", content: $system_prompt }, { role: "user", content: $prompt } ] }' | xargs -I {} openai "{}" | jq -r '.choices[0].message.content'
+request="$(jq -n --arg system_prompt "$system_prompt" --arg prompt "$prompt" '{ model: "gpt-4", messages: [ { role: "system", content: $system_prompt }, { role: "user", content: $prompt } ] }')"
+openai "$request" | jq -r '.choices[0].message.content'
