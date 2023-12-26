@@ -1,6 +1,6 @@
 Package: openai
 Provides: ai
-Version: 0.1.0
+Version: 0.2.0
 Architecture: all
 Depends: debconf, bash, curl, jq
 Priority: optional
