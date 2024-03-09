@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e
 . /usr/share/debconf/confmodule
 db_get openai/OPENAI_API_TOKEN
 echo "$RET" > /opt/openai/OPENAI_API_TOKEN
