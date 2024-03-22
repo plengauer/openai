@@ -1,8 +1,8 @@
 Package: openai
 Provides: ai
-Version: 0.3.2
+Version: 0.3.3
 Architecture: all
-Depends: debconf, bash, curl, jq
+Depends: bash, debconf, findutils, curl, jq
 Priority: optional
 Maintainer: Philipp Lengauer <p.lengauer@gmail.com>
 Homepage: https://github.com/plengauer/openai
