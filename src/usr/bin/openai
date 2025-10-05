@@ -1,3 +1,3 @@
 #!/bin/bash -e
 request="$*"
-cat /opt/openai/OPENAI_API_TOKEN | xargs -I {} curl --silent --no-progress-meter https://api.openai.com/v1/chat/completions -H "Authorization: Bearer {}" -H "Content-Type: application/json" -X POST -d "$request"
+cat /opt/openai/OPENAI_API_TOKEN | xargs -I {} curl --no-progress-meter --fail --retry 4 --max-time "$((60 * 60))" https://api.openai.com/v1/chat/completions -H "Authorization: Bearer {}" -H "Content-Type: application/json" -X POST -d "$request"
