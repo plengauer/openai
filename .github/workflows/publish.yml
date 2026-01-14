@@ -13,4 +13,4 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: plengauer/publish-deb-repository@v0.0.6
+      - uses: plengauer/publish-deb-repository@v0.0.7
