@@ -2,6 +2,6 @@
 prompt="$*"
 system_prompt="$AI_SYSTEM_PROMPT"
 
-jq -n --arg system_prompt "$system_prompt" --arg prompt "$prompt" '{ model: "gpt-5.1-codex", reasoning: { effort: "xhigh" }, tools: [ { type: "web_search", search_context_size: "high" } ], instructions: $system_prompt, input: $prompt }' \
+jq -n --arg system_prompt "$system_prompt" --arg prompt "$prompt" '{ model: "gpt-5.1-codex", reasoning: { effort: "high" }, tools: [ { type: "web_search", search_context_size: "high" } ], instructions: $system_prompt, input: $prompt }' \
   | curl --no-progress-meter --fail --retry 4 --max-time "$((60 * 60))" https://api.openai.com/v1/responses -H "Authorization: Bearer $(cat /opt/openai/OPENAI_API_TOKEN)" -H "Content-Type: application/json" -d @- \
   | jq '.output[] | select(.type == "message") | .content[] | select(.type == "output_text") | .text' -r
